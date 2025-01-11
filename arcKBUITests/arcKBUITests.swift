@@ -1,10 +1,3 @@
-//
-//  arcKBUITests.swift
-//  arcKBUITests
-//
-//  Created by P01s0n on 11.01.25.
-//
-
 import XCTest
 
 final class arcKBUITests: XCTestCase {
@@ -19,7 +12,7 @@ final class arcKBUITests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        // Put teardown code here. This method is called before the invocation of each test method in the class.
     }
 
     @MainActor

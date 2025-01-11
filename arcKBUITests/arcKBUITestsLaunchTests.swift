@@ -1,10 +1,3 @@
-//
-//  arcKBUITestsLaunchTests.swift
-//  arcKBUITests
-//
-//  Created by P01s0n on 11.01.25.
-//
-
 import XCTest
 
 final class arcKBUITestsLaunchTests: XCTestCase {

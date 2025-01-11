@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  arcKB
-//
-//  Created by P01s0n on 11.01.25.
-//
-
 import SwiftUI
 import RealityKit
 
