@@ -1,5 +1,7 @@
 import SwiftUI
+import RealityKit
 
+// FullWidthContainerView provides a navigation bar with home and debug buttons
 struct FullWidthContainerView: View {
     @Environment(\.presentationMode) var presentationMode
     var isHomePage: Bool

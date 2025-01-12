@@ -1,5 +1,10 @@
 import SwiftUI
+import RealityKit
+import SplatView
+import MeshView
+import FullWidthContainerView
 
+// WelcomeView is the main view that provides navigation to SplatView and MeshView
 struct WelcomeView: View {
     @State private var navigateToSplat = false
     @State private var navigateToMesh = false
