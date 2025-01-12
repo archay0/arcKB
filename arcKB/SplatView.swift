@@ -1,5 +1,7 @@
 import SwiftUI
+import RealityKit
 
+// SplatView displays a simple text "Splat" with some styling
 struct SplatView: View {
     var body: some View {
         VStack {

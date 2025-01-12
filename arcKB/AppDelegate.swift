@@ -1,5 +1,6 @@
 import UIKit
 import SwiftUI
+import RealityKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
