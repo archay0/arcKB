@@ -1,4 +1,3 @@
-// !$*UTF8*$!
 {
 	archiveVersion = 1;
 	classes = {
@@ -27,11 +26,19 @@
 		20B5D7762D330CCF00DF71FC /* arcKB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = arcKB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20B5D7862D330CD100DF71FC /* arcKBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = arcKBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20B5D7902D330CD100DF71FC /* arcKBUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = arcKBUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		20B5D7A32D330CD100DF71FC /* FullWidthContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthContainerView.swift; sourceTree = "<group>"; };
+		20B5D7A42D330CD100DF71FC /* SplatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplatView.swift; sourceTree = "<group>"; };
+		20B5D7A52D330CD100DF71FC /* MeshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		20B5D7782D330CCF00DF71FC /* arcKB */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			children = (
+				20B5D7A32D330CD100DF71FC /* FullWidthContainerView.swift */,
+				20B5D7A42D330CD100DF71FC /* SplatView.swift */,
+				20B5D7A52D330CD100DF71FC /* MeshView.swift */,
+			);
 			path = arcKB;
 			sourceTree = "<group>";
 		};
@@ -236,6 +243,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20B5D7A62D330CD100DF71FC /* FullWidthContainerView.swift in Sources */,
+				20B5D7A72D330CD100DF71FC /* SplatView.swift in Sources */,
+				20B5D7A82D330CD100DF71FC /* MeshView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
