@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    @State private var navigateToOption1 = false
-    @State private var navigateToOption2 = false
+    @State private var navigateToSplat = false
+    @State private var navigateToMesh = false
 
     var body: some View {
         NavigationView {
@@ -15,27 +15,37 @@ struct WelcomeView: View {
                 Spacer()
 
                 HStack {
-                    NavigationLink(destination: EmptyView(), isActive: $navigateToOption1) {
+                    NavigationLink(destination: SplatView(), isActive: $navigateToSplat) {
                         Button(action: {
-                            navigateToOption1 = true
+                            navigateToSplat = true
                         }) {
-                            Text("Option 1")
-                                .foregroundColor(Color(UIColor.label))
-                                .padding()
-                                .background(Color(UIColor.systemBackground))
-                                .cornerRadius(10)
+                            VStack {
+                                Image(systemName: "paintbrush")
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color(UIColor.label))
+                                Text("Splat")
+                                    .foregroundColor(Color(UIColor.label))
+                                    .padding()
+                                    .background(Color(UIColor.systemBackground))
+                                    .cornerRadius(10)
+                            }
                         }
                     }
 
-                    NavigationLink(destination: EmptyView(), isActive: $navigateToOption2) {
+                    NavigationLink(destination: MeshView(), isActive: $navigateToMesh) {
                         Button(action: {
-                            navigateToOption2 = true
+                            navigateToMesh = true
                         }) {
-                            Text("Option 2")
-                                .foregroundColor(Color(UIColor.label))
-                                .padding()
-                                .background(Color(UIColor.systemBackground))
-                                .cornerRadius(10)
+                            VStack {
+                                Image(systemName: "cube")
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color(UIColor.label))
+                                Text("Mesh")
+                                    .foregroundColor(Color(UIColor.label))
+                                    .padding()
+                                    .background(Color(UIColor.systemBackground))
+                                    .cornerRadius(10)
+                            }
                         }
                     }
                 }
@@ -43,21 +53,7 @@ struct WelcomeView: View {
 
                 Spacer()
 
-                HStack {
-                    Button(action: {
-                        // Add back button action here
-                    }) {
-                        Text("Back")
-                            .foregroundColor(Color(UIColor.label))
-                            .padding()
-                            .background(Color(UIColor.systemBackground))
-                            .cornerRadius(10)
-                    }
-                    .padding(.leading, 20)
-
-                    Spacer()
-                }
-                .padding(.bottom, 20)
+                FullWidthContainerView(isHomePage: true)
             }
             .background(Color(UIColor.systemBackground))
             .edgesIgnoringSafeArea(.all)
