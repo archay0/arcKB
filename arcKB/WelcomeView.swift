@@ -3,11 +3,13 @@ import RealityKit
 import arcKB.SplatView
 import arcKB.MeshView
 import arcKB.FullWidthContainerView
+import arcKB.VideoProcessingView
 
-// WelcomeView is the main view that provides navigation to SplatView and MeshView
+// WelcomeView is the main view that provides navigation to SplatView, MeshView, and VideoProcessingView
 struct WelcomeView: View {
     @State private var navigateToSplat = false
     @State private var navigateToMesh = false
+    @State private var navigateToVideoProcessing = false
 
     var body: some View {
         NavigationView {
@@ -46,6 +48,23 @@ struct WelcomeView: View {
                                     .font(.largeTitle)
                                     .foregroundColor(Color(UIColor.label))
                                 Text("Mesh")
+                                    .foregroundColor(Color(UIColor.label))
+                                    .padding()
+                                    .background(Color(UIColor.systemBackground))
+                                    .cornerRadius(10)
+                            }
+                        }
+                    }
+
+                    NavigationLink(destination: VideoProcessingView(), isActive: $navigateToVideoProcessing) {
+                        Button(action: {
+                            navigateToVideoProcessing = true
+                        }) {
+                            VStack {
+                                Image(systemName: "video")
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color(UIColor.label))
+                                Text("Video Processing")
                                     .foregroundColor(Color(UIColor.label))
                                     .padding()
                                     .background(Color(UIColor.systemBackground))
