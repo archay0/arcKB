@@ -1,0 +1,76 @@
+name: iOS starter workflow
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Build and Test default scheme using any available iPhone simulator
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set Default Scheme
+        run: |
+          scheme_list=$(xcodebuild -list -json | tr -d "\n")
+          default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
+          echo $default | cat >default
+          echo Using default scheme: $default
+      - name: Build
+        env:
+          scheme: ${{ 'default' }}
+          platform: ${{ 'iOS Simulator' }}
+        run: |
+          # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
+          device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//"`
+          if [ $scheme = default ]; then scheme=$(cat default); fi
+          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
+          file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
+          xcodebuild build-for-testing -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device"
+                  - name: XCode-Deploy
+  # You may pin to the exact commit or the version.
+  # uses: observableobject/XCode-Deploy@22c52153e7c96abc9cda0bfaf987acef85f70c58
+  uses: observableobject/XCode-Deploy@v1.5
+  with:
+    # The version of XCode to use. Defaults to the latest stable version.
+    xcode-version: # optional, default is latest-stable
+    # Configuration (default: Release)
+    configuration: # default is Release
+    # Leave blank and Action will search for default scheme.
+    scheme: # optional, default is 
+    # Relative path and filename to ExportOptions.plist
+    path-to-export-options: # default is ExportOptions.plist
+    # Sets Build Number to # of commits.
+    update-build: # default is true
+    # Run Pod Install
+    install-pods: 
+    # Resolve Package Dependencies
+    resolve-package-dependencies: 
+    # base64 representation of the distribution certificate.
+    distribution-certificate-p12: 
+    # password to unlock the distribution certificate.
+    distribution-certificate-password: 
+    # base64 representation of the provisioning profile.
+    app-store-provisioning-profile: 
+    # App Store Connect API Auth Key ID.
+    auth-key-id: 
+    # App Store Connect API Issuer ID.
+    auth-key-issuer-id: 
+    # base64 representation of the App Store Connect AuthKey.
+    auth-key-p8: 
+          
+      - name: Test
+        env:
+          scheme: ${{ 'default' }}
+          platform: ${{ 'iOS Simulator' }}
+        run: |
+          # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
+          device=`xcrun xctrace list devices 2>&1 | grep -oE 'iPhone.*?[^\(]+' | head -1 | awk '{$1=$1;print}' | sed -e "s/ Simulator$//"`
+          if [ $scheme = default ]; then scheme=$(cat default); fi
+          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
+          file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
+          xcodebuild test-without-building -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device"
