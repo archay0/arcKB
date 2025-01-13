@@ -43,6 +43,17 @@ struct FullWidthContainerView: View {
                     .background(Color(UIColor.systemBackground))
                     .cornerRadius(10)
             }
+
+            Button(action: {
+                // Navigate to video processing
+            }) {
+                Image(systemName: "video")
+                    .font(.title)
+                    .foregroundColor(Color(UIColor.label))
+                    .padding()
+                    .background(Color(UIColor.systemBackground))
+                    .cornerRadius(10)
+            }
         }
         .padding()
         .background(Color(UIColor.systemBackground))
