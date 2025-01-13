@@ -1,9 +1,9 @@
 import SwiftUI
 import RealityKit
-import arcKB.SplatView
-import arcKB.MeshView
-import arcKB.FullWidthContainerView
-import arcKB.VideoProcessingView
+import SplatView
+import MeshView
+import FullWidthContainerView
+import VideoProcessingView
 
 // WelcomeView is the main view that provides navigation to SplatView, MeshView, and VideoProcessingView
 struct WelcomeView: View {
